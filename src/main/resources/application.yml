@@ -1,0 +1,20 @@
+#  配置数据源
+spring:
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://localhost:3306/crm?characterEncoding=utf-8&serverTimezone=Asia/Shanghai
+    username: root
+    password: 666
+
+# 本地日志
+logging:
+  level:
+    com:
+      zhjinyang:
+        cn: debug
+  file:
+    name: D:\\project3.log
+
+
+server:
+  port: 9000
