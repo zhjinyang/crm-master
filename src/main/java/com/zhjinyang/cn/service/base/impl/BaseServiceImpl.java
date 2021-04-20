@@ -1,6 +1,7 @@
 package com.zhjinyang.cn.service.base.impl;
 
 import com.baomidou.mybatisplus.core.conditions.Wrapper;
+import com.zhjinyang.cn.common.reflect.ReflectionUtils;
 import com.zhjinyang.cn.mapper.base.MyMapper;
 import com.zhjinyang.cn.service.base.BaseService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,7 +19,7 @@ public class BaseServiceImpl<T> implements BaseService<T> {
     private MyMapper<T> myMapper;
 
 
-    protected MyMapper<T> getMyMapper(){
+    protected MyMapper<T> getMyMapper() {
         return myMapper;
     }
 
@@ -39,11 +40,13 @@ public class BaseServiceImpl<T> implements BaseService<T> {
 
     @Override
     public int add(T t) {
+        ReflectionUtils.invokeMethod(t, "setData", null, null);
         return myMapper.insert(t);
     }
 
     @Override
     public int update(T t) {
+        ReflectionUtils.invokeMethod(t, "setData", null, null);
         return myMapper.updateById(t);
     }
 

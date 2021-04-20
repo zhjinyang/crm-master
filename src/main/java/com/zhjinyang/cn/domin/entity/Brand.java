@@ -21,6 +21,7 @@ public class Brand extends BaseEntity {
 
 
 
+
     /**
      * 品牌名称
      */

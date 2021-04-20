@@ -1,8 +1,11 @@
 package com.zhjinyang.cn.controller;
 
 import com.zhjinyang.cn.common.http.AxiosResult;
+import com.zhjinyang.cn.common.page.PageResult;
 import com.zhjinyang.cn.controller.base.BaseController;
+import com.zhjinyang.cn.domin.criteria.CategoryCriteria;
 import com.zhjinyang.cn.domin.entity.Category;
+import com.zhjinyang.cn.domin.vo.CategoryVo;
 import com.zhjinyang.cn.service.CategoryService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -21,8 +24,9 @@ public class CategoryController extends BaseController {
     private CategoryService categoryService;
 
     @GetMapping
-    public AxiosResult<List<Category>> findAll() {
-        return AxiosResult.success(categoryService.findAll());
+    public AxiosResult<List<CategoryVo>> findAll() {
+        List<CategoryVo> all = categoryService.buildTree();
+        return AxiosResult.success(all);
     }
 
     @GetMapping("{id}")
@@ -34,6 +38,7 @@ public class CategoryController extends BaseController {
     @PostMapping
     public AxiosResult<Void> add(@RequestBody Category category) {
         return toAxios(categoryService.add(category));
+       // return toAxios(categoryService.addCategory(category));
     }
 
     @PutMapping

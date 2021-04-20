@@ -1,8 +1,10 @@
 package com.zhjinyang.cn.controller;
 
 import com.zhjinyang.cn.common.http.AxiosResult;
+import com.zhjinyang.cn.common.page.PageResult;
 import com.zhjinyang.cn.controller.base.BaseController;
 import com.zhjinyang.cn.domin.entity.Good;
+import com.zhjinyang.cn.domin.vo.GoodVo;
 import com.zhjinyang.cn.service.GoodService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -21,8 +23,9 @@ public class GoodController extends BaseController {
     private GoodService goodService;
 
     @GetMapping
-    public AxiosResult<List<Good>> findAll() {
-        return AxiosResult.success(goodService.findAll());
+    public AxiosResult<PageResult<GoodVo>> findAll() {
+        List<Good> all = goodService.findAll();
+        return AxiosResult.success();
     }
 
     @GetMapping("{id}")
